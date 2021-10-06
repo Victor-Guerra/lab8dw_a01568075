@@ -81,9 +81,12 @@ class ProductDetail extends React.Component<{}, ProductState> {
 
         console.log("selectedColor: " + value);
 
-        this.setState({
-            selectedColor: value
-        })
+        const sizes = this.state.helper.getSizes(value);
+        this.setState({sizes, selectedColor: value});
+        
+        if (sizes.length >= 1) {
+            this.setState({selectedSize: sizes[0]});
+        }
     } 
 
     changedSize = (event: any) => {
